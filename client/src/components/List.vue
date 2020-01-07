@@ -21,7 +21,7 @@ export default {
   name: "List",
   props: ["listData"],
 
-  method: {
+  methods: {
     deleteList(listData) {
       this.$store.dispatch("deleteList", listData);
     }

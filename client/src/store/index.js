@@ -13,7 +13,7 @@ let base = window.location.host.includes("localhost:8080")
 
 let api = Axios.create({
   baseURL: base + "api/",
-  timeout: 3000,
+  timeout: 10000,
   withCredentials: true
 });
 
@@ -87,7 +87,6 @@ export default new Vuex.Store({
       });
     },
     async deleteBoard({ commit, dispatch }, boardId) {
-      debugger;
       await api.delete("boards/" + boardId);
       dispatch("getBoards");
     },
@@ -100,11 +99,11 @@ export default new Vuex.Store({
     },
     async getLists({ commit, dispatch }, boardId) {
       let res = await api.get("boards/" + boardId + "/lists");
-      debugger;
       commit("setLists", res.data);
     },
     async deleteList({ commit, dispatch }, listData) {
       await api.delete("lists/" + listData._id);
+
       dispatch("getLists", listData.boardId);
     }
 

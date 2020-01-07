@@ -9,15 +9,11 @@ export default class ListsController {
       .Router()
       .use(Authorize.authenticated)
       .post("", this.createList)
-      .use(this.defaultRoute)
-      .delete("/:id", this.deleteList);
+      .delete("/:id", this.deleteList)
+      .use(this.defaultRoute);
   }
 
   // this is pretty neat
-
-  defaultRoute(req, res, next) {
-    next({ status: 404, message: "No Such Route" });
-  }
 
   async createList(req, res, next) {
     try {
@@ -30,5 +26,10 @@ export default class ListsController {
   }
   async deleteList(req, res, next) {
     let data = await _listService.deleteList(req.params.id);
+    return res.send("deleted");
+  }
+
+  defaultRoute(req, res, next) {
+    next({ status: 404, message: "No Such Routerrrrrrrrrrr" });
   }
 }
