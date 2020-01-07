@@ -2,6 +2,7 @@
   <div class="col-2">
     <div class="row">
       <h3>{{listData.title}}</h3>
+      <i class="fas fa-trash-alt" @click="deleteList(listData)"></i>
     </div>
     <div class="row">
       <div class="input-group input-group-sm mb-3">
@@ -18,7 +19,13 @@
 <script>
 export default {
   name: "List",
-  props: ["listData"]
+  props: ["listData"],
+
+  method: {
+    deleteList(listData) {
+      this.$store.dispatch("deleteList", listData);
+    }
+  }
 };
 </script>
 

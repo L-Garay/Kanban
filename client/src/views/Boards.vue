@@ -15,6 +15,7 @@
         </form>
         <div v-for="board in boards" :key="board._id">
           <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+          <i class="fas fa-trash-alt" @click="deleteBoard(board._id)"></i>
         </div>
       </div>
     </div>
@@ -47,6 +48,9 @@ export default {
     },
     logout() {
       this.$store.dispatch("logout");
+    },
+    deleteBoard(boardId) {
+      this.$store.dispatch("deleteBoard", boardId);
     }
   }
 };

@@ -9,7 +9,8 @@ export default class ListsController {
       .Router()
       .use(Authorize.authenticated)
       .post("", this.createList)
-      .use(this.defaultRoute);
+      .use(this.defaultRoute)
+      .delete("/:id", this.deleteList);
   }
 
   // this is pretty neat
@@ -26,5 +27,8 @@ export default class ListsController {
     } catch (err) {
       next(err);
     }
+  }
+  async deleteList(req, res, next) {
+    let data = await _listService.deleteList(req.params.id);
   }
 }

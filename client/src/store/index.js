@@ -86,6 +86,11 @@ export default new Vuex.Store({
         dispatch("getBoards");
       });
     },
+    async deleteBoard({ commit, dispatch }, boardId) {
+      debugger;
+      await api.delete("boards/" + boardId);
+      dispatch("getBoards");
+    },
     //#endregion
 
     //#region -- LISTS --
@@ -97,6 +102,10 @@ export default new Vuex.Store({
       let res = await api.get("boards/" + boardId + "/lists");
       debugger;
       commit("setLists", res.data);
+    },
+    async deleteList({ commit, dispatch }, listData) {
+      await api.delete("lists/" + listData._id);
+      dispatch("getLists", listData.boardId);
     }
 
     //#endregion
