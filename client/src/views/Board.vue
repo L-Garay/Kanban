@@ -6,54 +6,73 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">{{board.title}} | {{board.description}}</div>
-
-      <div class="input-group input-group-sm mb-3">
-        <input
-          @submit="addList"
-          v-model="newList.title"
-          type="text"
-          class="form-control"
-          placeholder="New List"
-        />
-        <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="col-12">{{board.title}} | {{board.description}}</div>
+      <div class="col-4 offset-4">
+        <form @submit="addList" class="form-group">
+          Name of List:
+          <input
+            v-model="newList.title"
+            class="form-control"
+            type="text"
+            placeholder="Name of list"
+          />
+          <button class="btn btn-sm btn-success" type="submit">Submit List</button>
+        </form>
       </div>
     </div>
-    <div class="row">
-      <div class="col">New list goes here</div>
+    <div class="row" v-for="list in lists" :key="list._id">
+      <list-component :listData="list" />
     </div>
   </div>
 </template>
 
 <script>
+import ListComponent from "@/components/List.vue";
 export default {
   name: "board",
   data() {
     return {
       newList: {
-        title: ""
+        title: "",
+        authorId: "",
+        boardId: ""
       }
     };
   },
   methods: {
     addList() {
-      let list = this.newList;
+      let list = {
+        title: this.newList.title,
+        authorId: this.$store.state.user._id,
+        boardId: this.$route.params.boardId
+      };
       this.$store.dispatch("addList", list);
       this.newList = {
-        title: ""
+        title: "",
+        authorId: "",
+        boardId: ""
       };
     }
+  },
+  mounted() {
+    this.$store.dispatch("getBoards");
+    this.$store.dispatch("getLists", this.$route.params.boardId);
   },
   computed: {
     board() {
       return (
-        //FIXME This does not work on page reload because the boards array is empty in the store
         this.$store.state.boards.find(b => b._id == this.boardId) || {
           title: "Loading..."
         }
       );
+    },
+    lists() {
+      return this.$store.state.lists;
     }
   },
-  props: ["boardId"]
+  props: ["boardId"],
+  components: {
+    ListComponent
+  }
 };
 </script>
