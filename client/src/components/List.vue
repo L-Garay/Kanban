@@ -5,26 +5,71 @@
       <i class="fas fa-trash-alt fa-lg icon" @click="deleteList(listData)"></i>
     </div>
     <div>
-      <div class="input-group input-group-sm mb-3 px-2">
-        <input type="text" class="form-control" placeholder="New Task" />
-        <button class="btn btn-primary btn-sm">Submit</button>
-      </div>
+      <form @submit="addTask(listData)" class="form-group">
+        <input
+          v-model="newTask.description"
+          class="form-control"
+          type="text"
+          placeholder="New task"
+        />
+        <button class="btn btn-sm btn-success" type="submit">Submit Task</button>
+      </form>
     </div>
     <div>
-      <div>Task Component will go here</div>
+      <ul v-for="task in tasks" :key="task._id">
+        <task :taskData="task" />
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import Task from "@/components/Task.vue";
 export default {
   name: "List",
   props: ["listData"],
-
+  data() {
+    return {
+      newTask: {
+        description: "",
+        listId: "",
+        authorId: "",
+        boardId: ""
+      }
+    };
+  },
   methods: {
     deleteList(listData) {
       this.$store.dispatch("deleteList", listData);
+    },
+    addTask(listData) {
+      let task = {
+        description: this.newTask.description,
+        listId: listData._id,
+        authorId: listData.authorId,
+        boardId: listData.boardId
+      };
+      this.$store.dispatch("addTask", task);
+      console.log("new task object being sent to store", task);
+
+      this.newTask = {
+        description: "",
+        listId: "",
+        authorId: "",
+        boardId: ""
+      };
     }
+  },
+  mounted() {
+    this.$store.dispatch("getTasks", this.listData._id);
+  },
+  computed: {
+    tasks() {
+      return this.$store.state.tasks;
+    }
+  },
+  components: {
+    Task
   }
 };
 </script>

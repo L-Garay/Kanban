@@ -37,9 +37,10 @@ server.use("/account", new UserController().router);
 
 //YOUR ROUTES HERE!!!!!!
 import BoardController from "./controllers/BoardController";
-
-server.use("/api/boards", new BoardController().router);
 import ListController from "./controllers/ListController";
+import TaskController from "./controllers/TaskController";
+server.use("/api/boards", new BoardController().router);
+server.use("/api/tasks", new TaskController().router);
 server.use("/api/lists", new ListController().router);
 
 //NOTE Default error handler, catches all routes with an error attached

@@ -3,7 +3,10 @@
     <div class="row">
       <div class="col d-flex justify-content-between">
         <h4>WELCOME TO THE BOARDS!!!</h4>
-        <button @click="logout" class="btn btn-danger">Logout</button>
+        <div class="div d-flex">
+          <p>{{user.name}} ||</p>
+          <button @click="logout" class="btn btn-danger">Logout</button>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -39,6 +42,9 @@ export default {
   computed: {
     boards() {
       return this.$store.state.boards;
+    },
+    user() {
+      return this.$store.state.user;
     }
   },
   methods: {
