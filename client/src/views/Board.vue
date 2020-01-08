@@ -20,8 +20,10 @@
         </form>
       </div>
     </div>
-    <div class="row" v-for="list in lists" :key="list._id">
-      <list-component :listData="list" />
+    <div class="row">
+      <div class="col-3 listArea" v-for="list in lists" :key="list._id">
+        <list-component :listData="list" />
+      </div>
     </div>
   </div>
 </template>
@@ -76,3 +78,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.listArea {
+  display: flex;
+}
+</style>

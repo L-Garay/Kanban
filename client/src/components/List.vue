@@ -1,17 +1,17 @@
 <template>
-  <div class="col-2">
-    <div class="row">
-      <h3>{{listData.title}}</h3>
-      <i class="fas fa-trash-alt" @click="deleteList(listData)"></i>
+  <div class="shadow-lg">
+    <div class="d-flex justify-content-between p-1">
+      <h3 class="center">{{listData.title}}</h3>
+      <i class="fas fa-trash-alt fa-lg icon" @click="deleteList(listData)"></i>
     </div>
-    <div class="row">
-      <div class="input-group input-group-sm mb-3">
+    <div>
+      <div class="input-group input-group-sm mb-3 px-2">
         <input type="text" class="form-control" placeholder="New Task" />
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary btn-sm">Submit</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col">Task Component will go here</div>
+    <div>
+      <div>Task Component will go here</div>
     </div>
   </div>
 </template>
@@ -30,4 +30,12 @@ export default {
 </script>
 
 <style scoped>
+.icon {
+  font-size: 1rem;
+  padding-top: 8pt;
+}
+.icon:hover {
+  color: red;
+  cursor: pointer;
+}
 </style>
