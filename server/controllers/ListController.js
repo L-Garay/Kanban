@@ -16,10 +16,16 @@ export default class ListsController {
   }
 
   // this is pretty neat
-
+  async getTasksByListId(req, res, next) {
+    try {
+      let data = await _taskService.getTasksByListId(req.params.id);
+      return res.send(data);
+    } catch (err) {
+      next(err);
+    }
+  }
   async createList(req, res, next) {
     try {
-      //only gets boards by user who is logged in
       let data = await _listService.createList(req.body);
       return res.send(data);
     } catch (err) {
@@ -30,14 +36,6 @@ export default class ListsController {
     try {
       let data = await _listService.deleteList(req.params.id);
       return res.send("deleted");
-    } catch (err) {
-      next(err);
-    }
-  }
-  async getTasksByListId(req, res, next) {
-    try {
-      let data = await _taskService.getTasksByListId(req.params.id);
-      return res.send(data);
     } catch (err) {
       next(err);
     }

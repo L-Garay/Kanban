@@ -15,10 +15,8 @@
         <button class="btn btn-sm btn-success" type="submit">Submit Task</button>
       </form>
     </div>
-    <div>
-      <ul v-for="task in tasks" :key="task._id">
-        <task :taskData="task" />
-      </ul>
+    <div v-for="task in tasks" :key="task._id">
+      <task :taskData="task" />
     </div>
   </div>
 </template>
@@ -50,7 +48,6 @@ export default {
         boardId: listData.boardId
       };
       this.$store.dispatch("addTask", task);
-      console.log("new task object being sent to store", task);
 
       this.newTask = {
         description: "",
@@ -61,11 +58,11 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("getTasks", this.listData._id);
+    this.$store.dispatch("getTasks", { listId: this.listData._id });
   },
   computed: {
     tasks() {
-      return this.$store.state.tasks;
+      return this.$store.state.tasks[this.listData._id];
     }
   },
   components: {

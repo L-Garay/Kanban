@@ -48,6 +48,8 @@ export default {
         authorId: this.$store.state.user._id,
         boardId: this.$route.params.boardId
       };
+      console.log(list);
+
       this.$store.dispatch("addList", list);
       this.newList = {
         title: "",

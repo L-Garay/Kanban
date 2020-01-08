@@ -9,6 +9,7 @@ export default class TasksController {
       .Router()
       .use(Authorize.authenticated)
       .post("", this.createTask)
+      .get("", this.getTasks)
       .delete("/:id", this.deleteTask)
       .use(this.defaultRoute);
   }
@@ -27,6 +28,11 @@ export default class TasksController {
   async deleteTask(req, res, next) {
     let data = await _taskService.deleteTask(req.params.id);
     return res.send("deleted");
+  }
+
+  async getTasks(req, res, next) {
+    let data = await _taskService.getTasks(req.session.uid);
+    return res.send(data);
   }
 
   defaultRoute(req, res, next) {

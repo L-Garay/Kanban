@@ -16,6 +16,10 @@ class TaskService {
     let data = await _repository.create(body);
     return data;
   }
+  async getTasks(id) {
+    let data = await _repository.find({ authorId: id });
+    return data;
+  }
 }
 
 const _taskService = new TaskService();
