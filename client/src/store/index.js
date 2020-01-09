@@ -24,7 +24,7 @@ export default new Vuex.Store({
     activeBoard: {},
     lists: [],
     tasks: {},
-    comments: []
+    comments: {}
   },
   mutations: {
     setUser(state, user) {
@@ -43,6 +43,9 @@ export default new Vuex.Store({
     },
     setTasks(state, newTask) {
       Vue.set(state.tasks, newTask.listId, newTask.tasks);
+    },
+    setComments(state, commentData) {
+      Vue.set(state.comments, commentData.taskId, commentData.comments);
     }
   },
   actions: {
@@ -130,6 +133,30 @@ export default new Vuex.Store({
     async deleteTask({ commit, dispatch }, taskData) {
       await api.delete("tasks/" + taskData._id);
       dispatch("getTasks", taskData);
+    },
+    async moveTask({ commit, dispatch }, taskData) {
+      await api.put("tasks/" + taskData._id, taskData.listId);
+      dispatch("getTasks", taskData);
+    },
+
+    //#endregion
+
+    //#region -- Comments --
+    async addComment({ commit, dispatch }, commentData) {
+      await api.post("comments", commentData);
+      dispatch("getComments", commentData);
+    },
+    async getComments({ commit, dispatch }, data) {
+      let res = await api.get("tasks/" + data.taskId + "/comments");
+      let newComment = {
+        taskId: data.taskId,
+        comments: res.data
+      };
+      commit("setComments", newComment);
+    },
+    async deleteComment({ commit, dispatch }, commentData) {
+      await api.delete("comments/" + commentData._id);
+      dispatch("getComments", commentData);
     }
 
     //#endregion

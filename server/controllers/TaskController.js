@@ -1,6 +1,7 @@
 import _taskService from "../services/TaskService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
+import _commentService from "../services/CommentService";
 
 //PUBLIC
 export default class TasksController {
@@ -10,12 +11,29 @@ export default class TasksController {
       .use(Authorize.authenticated)
       .post("", this.createTask)
       .get("", this.getTasks)
+      .get("/:id/comments", this.getCommentsByTaskId)
+      .put("/:id", this.moveTask)
       .delete("/:id", this.deleteTask)
       .use(this.defaultRoute);
   }
 
   // this is pretty neat
 
+  async moveTask(req, res, next) {
+    try {
+      let data = await _taskService.moveTask(req.params.id);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getCommentsByTaskId(req, res, next) {
+    try {
+      let data = await _commentService.getCommentsByTaskId(req.params.id);
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
   async createTask(req, res, next) {
     try {
       //only gets boards by user who is logged in

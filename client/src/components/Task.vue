@@ -4,6 +4,22 @@
       {{taskData.description}}
       <i @click="deleteTask(taskData)" class="fas fa-backspace"></i>
     </p>
+    <div class="dropdown dropDown">
+      <button
+        class="btn btn-sm dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+      >Move to new List</button>
+      <div class="dropdown-menu">
+        <p
+          v-for="list in lists"
+          :key="list._id"
+          class="dropdown-item"
+          @click="moveTask(list._id)"
+        >{{list.title}}</p>
+      </div>
+    </div>
     <p @click="toggleComments" class="commentLink">Comments</p>
     <div v-if="commentArea">
       <div>
@@ -17,7 +33,10 @@
           <button class="btn btn-sm btn-success" type="submit">Submit Comment</button>
         </form>
       </div>
-      <div>comment component will go here</div>
+
+      <div v-for="comment in comments" :key="comment._id">
+        <comment :commentData="comment" />
+      </div>
     </div>
   </div>
 </template>
@@ -40,11 +59,29 @@ export default {
     };
   },
   mounted() {
-    console.log(this.taskData);
+    return this.$store.dispatch("getComments", { taskId: this.taskData._id });
+  },
+  computed: {
+    comments() {
+      return this.$store.state.comments[this.taskData._id];
+    },
+    lists() {
+      return this.$store.state.lists;
+    }
   },
   methods: {
     deleteTask(taskData) {
       this.$store.dispatch("deleteTask", taskData);
+    },
+    moveTask(listId) {
+      let updatedTask = {
+        listId: listId,
+        taskId: this.taskData._id
+      };
+      this.$store.dispatch("moveTask", updatedTask);
+      // this.updatedTask = {
+
+      // }
     },
     toggleComments() {
       if (this.commentArea == false) {
@@ -93,5 +130,7 @@ export default {
 .commentLink:hover {
   color: blue;
   cursor: pointer;
+}
+.dropDown {
 }
 </style>

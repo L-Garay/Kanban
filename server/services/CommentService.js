@@ -5,7 +5,7 @@ const _repository = mongoose.model("Comment", Comment);
 
 class CommentService {
   async getCommentsByTaskId(id) {
-    let data = await _repository.find({ listId: id });
+    let data = await _repository.find({ taskId: id });
     return data;
   }
   async deleteComment(id) {
