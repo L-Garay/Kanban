@@ -4,6 +4,14 @@ import Task from "../models/Task";
 const _repository = mongoose.model("Task", Task);
 
 class TaskService {
+  async moveTask(taskId, listId) {
+    let data = await _repository.findOneAndUpdate(
+      { _id: taskId },
+      { listId: listId },
+      { new: true }
+    );
+    return data;
+  }
   async getTasksByListId(id) {
     let data = await _repository.find({ listId: id });
     return data;

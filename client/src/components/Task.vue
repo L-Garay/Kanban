@@ -78,6 +78,7 @@ export default {
         listId: listId,
         taskId: this.taskData._id
       };
+
       this.$store.dispatch("moveTask", updatedTask);
       // this.updatedTask = {
 
@@ -131,6 +132,8 @@ export default {
   color: blue;
   cursor: pointer;
 }
-.dropDown {
+.dropdown-item {
+  color: red;
+  cursor: pointer;
 }
 </style>

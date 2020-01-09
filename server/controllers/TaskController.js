@@ -21,7 +21,8 @@ export default class TasksController {
 
   async moveTask(req, res, next) {
     try {
-      let data = await _taskService.moveTask(req.params.id);
+      let data = await _taskService.moveTask(req.params.id, req.body.listId);
+      return res.send(data);
     } catch (error) {
       next(error);
     }
