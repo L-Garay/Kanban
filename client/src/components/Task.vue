@@ -7,7 +7,7 @@
     <p @click="toggleComments" class="commentLink">Comments</p>
     <div v-if="commentArea">
       <div>
-        <form @submit="addComment" class="form-group">
+        <form @submit="addComment(taskData)" class="form-group">
           <input
             v-model="newComment.description"
             class="form-control"
@@ -29,10 +29,19 @@ export default {
   props: ["taskData"],
   data() {
     return {
-      commentArea: false
+      commentArea: false,
+      newComment: {
+        description: "",
+        listId: "",
+        authorId: "",
+        boardId: "",
+        taskId: ""
+      }
     };
   },
-
+  mounted() {
+    console.log(this.taskData);
+  },
   methods: {
     deleteTask(taskData) {
       this.$store.dispatch("deleteTask", taskData);
@@ -43,6 +52,23 @@ export default {
       } else if (this.commentArea == true) {
         this.commentArea = false;
       }
+    },
+    addComment(taskData) {
+      let comment = {
+        description: this.newComment.description,
+        listId: this.taskData.listId,
+        authorId: this.taskData.authorId,
+        boardId: this.taskData.boardId,
+        taskId: this.taskData._id
+      };
+      this.$store.dispatch("addComment", comment);
+      this.newComment = {
+        description: "",
+        listId: "",
+        authorId: "",
+        boardId: "",
+        taskId: ""
+      };
     }
   },
   components: {
