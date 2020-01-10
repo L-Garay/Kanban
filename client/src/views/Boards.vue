@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid">
+  <div class="background container-fluid">
     <div class="row">
       <div class="col d-flex justify-content-between">
-        <h4>WELCOME TO THE BOARDS!!!</h4>
+        <h4>Here are your bans of Kan!!!</h4>
         <div class="div d-flex">
           <p>{{user.name}} ||</p>
           <button @click="logout" class="btn btn-danger">Logout</button>
@@ -10,14 +10,27 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        <form @submit.prevent="addBoard">
-          <input type="text" placeholder="title" v-model="newBoard.title" required />
-          <input type="text" placeholder="description" v-model="newBoard.description" />
+      <div class="col-4">
+        <form class="d-flex flex-column" @submit.prevent="addBoard">
+          <input type="text" placeholder="  Title" v-model="newBoard.title" required />
+          <textarea
+            v-model="newBoard.description"
+            class="form-control"
+            cols="30"
+            rows="3"
+            maxlength="300"
+            placeholder="Description"
+          ></textarea>
           <button type="submit">Create Board</button>
         </form>
+      </div>
+      <div class="col-5 offset-3">
+        <div>
+          <h4>Your boards</h4>
+        </div>
         <div v-for="board in boards" :key="board._id">
           <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+          || {{board.description}}
           <i class="fas fa-trash-alt" @click="deleteBoard(board._id)"></i>
         </div>
       </div>
@@ -61,3 +74,14 @@ export default {
   }
 };
 </script>
+<style scoped>
+.background {
+  background-image: url("../assets/strawb.jpg");
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+</style>
