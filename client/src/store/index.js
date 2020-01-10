@@ -135,10 +135,12 @@ export default new Vuex.Store({
       dispatch("getTasks", taskData);
     },
     async moveTask({ commit, dispatch }, updatedTask) {
-      await api.put("tasks/" + updatedTask.taskId, updatedTask.listId);
-      dispatch("getTasks", updatedTask);
+      console.log(updatedTask);
+      let res = await api.put("tasks/" + updatedTask.taskId, updatedTask);
+      dispatch("getTasks", { listId: updatedTask.listId });
+      dispatch("getTasks", { listId: updatedTask.oldListId });
+      console.log(res.data);
     },
-
     //#endregion
 
     //#region -- Comments --

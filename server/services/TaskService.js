@@ -4,10 +4,10 @@ import Task from "../models/Task";
 const _repository = mongoose.model("Task", Task);
 
 class TaskService {
-  async moveTask(taskId, listId) {
+  async moveTask(taskId, newListId) {
     let data = await _repository.findOneAndUpdate(
       { _id: taskId },
-      { listId: listId },
+      { listId: newListId },
       { new: true }
     );
     return data;
@@ -17,7 +17,7 @@ class TaskService {
     return data;
   }
   async deleteTask(id) {
-    let data = await _repository.findOneAndDelete({ _id: id });
+    let data = await _repository.findOneAndRemove({ _id: id });
     return data;
   }
   async createTask(body) {

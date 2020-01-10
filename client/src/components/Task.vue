@@ -75,6 +75,7 @@ export default {
     },
     moveTask(listId) {
       let updatedTask = {
+        oldListId: this.taskData.listId,
         listId: listId,
         taskId: this.taskData._id
       };

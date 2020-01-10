@@ -5,7 +5,7 @@ const _repository = mongoose.model("List", List);
 
 class ListService {
   async deleteList(id) {
-    let data = await _repository.findOneAndDelete({ _id: id });
+    let data = await _repository.findOneAndRemove({ _id: id });
     return data;
   }
   async getListByBoardId(id) {
