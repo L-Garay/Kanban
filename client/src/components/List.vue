@@ -12,7 +12,7 @@
           type="text"
           placeholder="New task"
         />
-        <button class="btn btn-sm btn-success" type="submit">Submit Task</button>
+        <button class="btn btn-sm btn-success" type="submit">Submit the Task</button>
       </form>
     </div>
     <div v-for="task in tasks" :key="task._id">
