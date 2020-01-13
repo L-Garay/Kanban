@@ -1,15 +1,17 @@
 <template>
-  <div class="container-fluid board">
+  <div class="background container-fluid board">
     <div class="row">
       <div class="col">
-        <router-link :to="{name: 'boards'}">Boards</router-link>
+        <router-link id="routerLink" :to="{name: 'boards'}">Back to the Boards</router-link>
       </div>
     </div>
     <div class="row">
-      <div class="col-12">{{board.title}} | {{board.description}}</div>
+      <div class="col-12 boardInfo">
+        <b>{{board.title}}</b>
+        | {{board.description}}
+      </div>
       <div class="col-4 offset-4">
         <form @submit="addList" class="form-group">
-          Name of List:
           <input
             v-model="newList.title"
             class="form-control"
@@ -81,6 +83,22 @@ export default {
 };
 </script>
 <style scoped>
+.background {
+  background-image: url("../assets/lemon.jpg");
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+#routerLink {
+  color: black;
+}
+.boardInfo {
+  margin: 5pt 0 10pt 0;
+  font-size: 1.5rem;
+}
 .listArea {
   display: flex;
 }

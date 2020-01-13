@@ -2,7 +2,7 @@
   <div class="task">
     <p class="taskTitle">
       {{taskData.description}}
-      <i @click="deleteTask(taskData)" class="fas fa-backspace"></i>
+      <i @click="deleteTask(taskData)" class="fas fa-backspace deleteBtn"></i>
     </p>
     <div class="dropdown dropDown">
       <button
@@ -133,7 +133,23 @@ export default {
   color: blue;
   cursor: pointer;
 }
+.dropdown-menu {
+  background-color: rgb(247, 211, 9);
+  border: 1px solid black;
+}
 .dropdown-item {
+  color: black;
+  cursor: pointer;
+}
+.dropdown-item:hover {
+  background-color: rgb(247, 211, 9);
+  color: red;
+}
+.deleteBtn {
+  color: yellow;
+  text-shadow: 1pt 1pt 1pt black;
+}
+.deleteBtn:hover {
   color: red;
   cursor: pointer;
 }

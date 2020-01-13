@@ -1,13 +1,13 @@
 <template>
   <div class="background container-fluid">
     <div class="row">
-      <div class="col-8 offset-2 text-center">
+      <div class="col-8 offset-2 text-center mb-4">
         <h4 class="title">Here are your bans of Kan!!!</h4>
       </div>
       <div class="col-2">
         <div class="div d-flex justify-content-end">
           <p class="username">{{user.name}}</p>
-          <button @click="logout" class="btn btn-danger">Logout</button>
+          <button @click="logout" class="btn btn-danger logoutBtn">Logout</button>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
             maxlength="300"
             placeholder="Description"
           ></textarea>
-          <button type="submit">Create Board</button>
+          <button class="createBtn" type="submit">Create Board</button>
         </form>
       </div>
       <div class="boardsList col-5 offset-3">
@@ -38,7 +38,7 @@
             >{{board.title}}</router-link>||
             <span>{{board.description}}</span>
             <span>
-              <i class="fas fa-trash-alt" @click="deleteBoard(board._id)"></i>
+              <i class="fas fa-trash-alt deleteBtn" @click="deleteBoard(board._id)"></i>
             </span>
           </li>
         </ul>
@@ -94,7 +94,7 @@ export default {
   background-attachment: fixed;
 }
 .title {
-  font-size: 5rem;
+  font-size: 4rem;
   font-family: "Jacques Francois Shadow", cursive;
 }
 .username {
@@ -134,5 +134,16 @@ li::before {
 }
 .boardsTitle {
   color: white;
+}
+/* .createBtn {
+  background-color: green;
+  color: red;
+} */
+.deleteBtn {
+  color: red;
+}
+.deleteBtn:hover {
+  cursor: pointer;
+  color: green;
 }
 </style>

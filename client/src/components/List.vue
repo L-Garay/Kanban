@@ -5,7 +5,7 @@
       <i class="fas fa-trash-alt fa-lg icon" @click="deleteList(listData)"></i>
     </div>
     <div>
-      <form @submit="addTask(listData)" class="form-group">
+      <form @submit="addTask(listData)" class="form-group px-1">
         <input
           v-model="newTask.description"
           class="form-control"
