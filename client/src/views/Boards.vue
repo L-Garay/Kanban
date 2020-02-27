@@ -12,21 +12,27 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3 offset-1">
         <form class="d-flex flex-column" @submit.prevent="addBoard">
-          <input type="text" placeholder="  Title" v-model="newBoard.title" required />
+          <input
+            type="text"
+            class="formTitle"
+            placeholder="  Title"
+            v-model="newBoard.title"
+            required
+          />
           <textarea
             v-model="newBoard.description"
-            class="form-control"
+            class="form-control formDescription"
             cols="30"
             rows="3"
             maxlength="300"
             placeholder="Description"
           ></textarea>
-          <button class="createBtn" type="submit">Create Board</button>
+          <button class="createBtn btn btn-sm" type="submit">Create Board</button>
         </form>
       </div>
-      <div class="boardsList col-5 offset-3">
+      <div class="boardsList col-4 offset-3">
         <div>
           <h4 class="boardsTitle">Your boards</h4>
         </div>
@@ -96,7 +102,7 @@ export default {
 .title {
   font-size: 4rem;
   font-family: "Jacques Francois Shadow", cursive;
-  color: red;
+  /* color: red; */
 }
 .username {
   font-size: 18pt;
@@ -148,9 +154,9 @@ li::before {
   color: green;
 }
 .logoutBtn {
-  color: green;
+  color: rgb(93, 248, 79);
   text-shadow: 1pt 1pt 1pt black;
-  border: 1pt solid green;
+  border: 1pt solid rgb(93, 248, 79);
 }
 .logoutBtn:hover {
   color: white;
@@ -158,5 +164,37 @@ li::before {
   box-shadow: 2pt 2pt 2pt black;
   cursor: pointer;
   border: 1pt solid white;
+}
+.formTitle {
+  background-color: rgba(17, 173, 25, 0.8);
+  color: white;
+  text-shadow: 1pt 1pt 1pt black;
+}
+.formDescription {
+  background-color: rgb(255, 0, 0, 0.6);
+  color: white;
+  text-shadow: 1pt 1pt 1pt black;
+}
+::placeholder {
+  color: white;
+  text-shadow: 1pt 1pt 1pt black;
+}
+.createBtn {
+  background-color: rgb(255, 0, 0, 0.8);
+  border: 1pt solid rgb(93, 248, 79);
+  width: 120px;
+  align-self: center;
+  margin-top: 10pt;
+  color: rgb(81, 252, 47);
+  text-shadow: 1pt 1pt 1pt black;
+}
+.createBtn:hover {
+  background-color: red;
+  border: 1pt solid white;
+  width: 120px;
+  align-self: center;
+  margin-top: 10pt;
+  color: white;
+  box-shadow: 2pt 2pt 2pt grey;
 }
 </style>
