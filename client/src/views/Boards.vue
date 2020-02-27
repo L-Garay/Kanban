@@ -96,6 +96,7 @@ export default {
 .title {
   font-size: 4rem;
   font-family: "Jacques Francois Shadow", cursive;
+  color: red;
 }
 .username {
   font-size: 18pt;
@@ -145,5 +146,17 @@ li::before {
 .deleteBtn:hover {
   cursor: pointer;
   color: green;
+}
+.logoutBtn {
+  color: green;
+  text-shadow: 1pt 1pt 1pt black;
+  border: 1pt solid green;
+}
+.logoutBtn:hover {
+  color: white;
+  background-color: rgb(255, 0, 0);
+  box-shadow: 2pt 2pt 2pt black;
+  cursor: pointer;
+  border: 1pt solid white;
 }
 </style>

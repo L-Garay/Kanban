@@ -99,7 +99,8 @@ export default {
 }
 .login-btn {
   border: 3px solid rgb(97, 92, 92);
-  box-shadow: 4px -2px 3px black;
+  /* box-shadow: 4px -2px 3px black; */
+  box-shadow: 2pt 2pt 2pt grey;
 }
 .login-btn:hover {
   cursor: pointer;
@@ -127,5 +128,7 @@ export default {
   /* font-family: "Unica One", cursive; */
   font-size: 5rem;
   font-family: "Jacques Francois Shadow", cursive;
+  text-shadow: 2pt 2pt 2pt grey;
+  color: rgb(233, 233, 73);
 }
 </style>
