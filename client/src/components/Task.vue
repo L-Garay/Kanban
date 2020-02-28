@@ -30,7 +30,7 @@
             type="text"
             placeholder="What you want to say"
           />
-          <button class="btn btn-sm btn-success" type="submit">Submit Comment</button>
+          <button class="btn btn-sm" type="submit">Submit Comment</button>
         </form>
       </div>
 
@@ -79,11 +79,7 @@ export default {
         listId: listId,
         taskId: this.taskData._id
       };
-
       this.$store.dispatch("moveTask", updatedTask);
-      // this.updatedTask = {
-
-      // }
     },
     toggleComments() {
       if (this.commentArea == false) {
@@ -123,6 +119,7 @@ export default {
 .taskTitle {
   padding-bottom: 0;
   margin-bottom: 0;
+  text-shadow: 1pt 1pt 5pt grey;
 }
 .commentLink {
   font-size: 10px;
@@ -130,7 +127,8 @@ export default {
   margin: 0;
 }
 .commentLink:hover {
-  color: blue;
+  color: white;
+  text-shadow: 0 0 20px black;
   cursor: pointer;
 }
 .dropdown-menu {
@@ -152,5 +150,15 @@ export default {
 .deleteBtn:hover {
   color: red;
   cursor: pointer;
+}
+button {
+  border: 1pt solid orange;
+  color: black;
+}
+button:hover {
+  border: 1pt solid orange;
+  color: white;
+  text-shadow: 0 0 3px black;
+  box-shadow: 0 0 50px orange;
 }
 </style>
