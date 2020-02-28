@@ -1,24 +1,26 @@
 <template>
   <div class="background container-fluid board">
     <div class="row">
-      <div class="col">
-        <router-link id="routerLink" :to="{name: 'boards'}">Back to the Boards</router-link>
+      <div class="col header">
+        <router-link :to="{name: 'boards'}">
+          <button class="btn">Back to the Boards</button>
+        </router-link>
       </div>
     </div>
-    <div class="row">
+    <div class="row mb-5">
       <div class="col-12 boardInfo">
         <b>{{board.title}}</b>
         | {{board.description}}
       </div>
       <div class="col-4 offset-4">
-        <form @submit="addList" class="form-group">
+        <form @submit="addList" class="form-group d-flex">
           <input
             v-model="newList.title"
-            class="form-control"
+            class="form-control mr-1"
             type="text"
             placeholder="Name of list"
           />
-          <button class="btn btn-sm btn-success" type="submit">Submit List</button>
+          <button class="btn btn-sm" type="submit">Submit List</button>
         </form>
       </div>
     </div>
@@ -92,12 +94,26 @@ export default {
   background-position: center;
   background-attachment: fixed;
 }
-#routerLink {
+.header {
+  text-align: start;
+  margin-left: 15pt;
+  padding-top: 10pt;
+}
+button {
+  border: 1pt solid orange;
   color: black;
 }
+button:hover {
+  border: 1pt solid orange;
+  color: white;
+  text-shadow: 0 0 3px black;
+  box-shadow: 0 0 50px orange;
+}
+
 .boardInfo {
   margin: 5pt 0 10pt 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  text-shadow: 2pt 2pt 5pt grey;
 }
 .listArea {
   display: flex;
