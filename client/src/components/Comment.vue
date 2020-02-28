@@ -24,6 +24,10 @@ export default {
 </script>
 
 <style scoped>
+.eraser {
+  color: yellow;
+  cursor: pointer;
+}
 .eraser:hover {
   color: red;
   cursor: pointer;
