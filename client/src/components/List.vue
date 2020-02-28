@@ -1,7 +1,7 @@
 <template>
   <div class="shadow-lg">
     <div class="d-flex justify-content-between p-1">
-      <h3 class="center">{{listData.title}}</h3>
+      <h3>{{listData.title}}</h3>
       <i class="fas fa-trash-alt fa-lg icon" @click="deleteList(listData)"></i>
     </div>
     <div>
@@ -12,7 +12,7 @@
           type="text"
           placeholder="New task"
         />
-        <button class="btn btn-sm btn-success" type="submit">Submit the Task</button>
+        <button class="btn btn-sm" type="submit">Submit the Task</button>
       </form>
     </div>
     <div v-for="task in tasks" :key="task._id">
@@ -72,12 +72,27 @@ export default {
 </script>
 
 <style scoped>
+div h3 {
+  text-shadow: 2pt 2pt 5pt grey;
+}
 .icon {
   font-size: 1rem;
   padding-top: 8pt;
+  text-shadow: 1pt 1pt 2pt grey;
+  color: yellow;
 }
 .icon:hover {
   color: red;
   cursor: pointer;
+}
+button {
+  border: 1pt solid orange;
+  color: black;
+}
+button:hover {
+  border: 1pt solid orange;
+  color: white;
+  text-shadow: 0 0 3px black;
+  box-shadow: 0 0 50px orange;
 }
 </style>
